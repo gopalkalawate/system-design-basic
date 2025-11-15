@@ -1,0 +1,19 @@
+# Build files
+*.o
+*.out
+*.exe
+build/
+bin/
+
+# VS Code stuff
+.vscode/
+
+# macOS junk
+.DS_Store
+
+# Python
+__pycache__/
+
+# Node
+node_modules/
+
