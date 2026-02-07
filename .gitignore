@@ -17,3 +17,9 @@ __pycache__/
 # Node
 node_modules/
 
+#ignoe executable files of c++
+*.out
+*.exe
+
+#java
+*.class

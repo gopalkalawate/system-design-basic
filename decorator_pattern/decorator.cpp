@@ -31,11 +31,11 @@ public:
         decoratedCoffee = coffee;
     }
     virtual string getDescrition() override{
-        return decoratedCoffee->getDescrition();
-    }
-    virtual double getCost() override{
-        return decoratedCoffee->getCost();
-    }
+            return decoratedCoffee->getDescrition();
+        }
+        virtual double getCost() override{
+            return decoratedCoffee->getCost();
+        }
 };
 
 // decorator implementation
@@ -51,8 +51,9 @@ public:
     }
 };
 
-class Capachino : public CoffeeDecorator{
-    Capachino(Coffee * coffee) : CoffeeDecorator(coffee){}
+class Whipped : public CoffeeDecorator{
+    public:
+    Whipped(Coffee * coffee) : CoffeeDecorator(coffee){}
     string getDescrition() override{
         return CoffeeDecorator::getDescrition() + ", Capachino";
     }
@@ -60,3 +61,21 @@ class Capachino : public CoffeeDecorator{
         return CoffeeDecorator::getCost() + 1.0;
     }
 };
+
+int main(){
+    // get whipped + sugar
+
+    // 1. Start with base coffee
+    Coffee *myCoffee = new PlainCoffee();
+    // 2. Add Sugar
+    myCoffee = new SugarDecorator(myCoffee);
+    // 3. Add Capachino
+    myCoffee = new Whipped(myCoffee);
+
+    cout << "Order: " << myCoffee->getDescrition() << endl;
+    cout << "Total Cost: $" << myCoffee->getCost() << endl;
+
+    // Cleanup (In real HLD/LLD, use smart pointers like std::unique_ptr!)
+    delete myCoffee; 
+    return 0;
+}
